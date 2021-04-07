@@ -120,7 +120,7 @@ public class StringST<Value> {
         if (x.val != null) queue.add(prefix);
 
         for (char c = 0; c < R; c++) {
-            collect(x, prefix + c, queue);
+            collect(x.next[c], prefix + c, queue);
         }
     }
 
@@ -142,7 +142,7 @@ public class StringST<Value> {
 
         for (int c = 0; c < R; c++) {
             if (next == '.' || next == c) {
-                collect(x.next[c], prefix + c, pattern, queue);
+                collect(x.next[c], prefix + (char)c, pattern, queue);
             }
         }
     }
@@ -161,7 +161,22 @@ public class StringST<Value> {
         st.put("sea", 6);
         st.put("shore", 7);
 
-        System.out.println(st.get("by"));
+        System.out.println(st.get("she"));
+
+        System.out.println("\nst.keys()");
+        for (String s : st.keys()) {
+            System.out.println(s);
+        }
+
+        System.out.println("\nst.keysWithPrefix(\"s\")");
+        for (String s : st.keysWithPrefix("s")) {
+            System.out.println(s);
+        }
+
+        System.out.println("\nst.keysThatMatch(\".he\")");
+        for (String s : st.keysThatMatch(".he")) {
+            System.out.println(s);
+        }
     }
 
 }
