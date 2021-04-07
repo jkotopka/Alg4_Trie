@@ -1,6 +1,7 @@
 package org.kotopka;
 
-import org.w3c.dom.Node;
+import java.util.ArrayDeque;
+import java.util.Queue;
 
 /**
  * {@code StringST} - Trie-based symbol table with {@code String} keys. Adapted from <a href="https://algs4.cs.princeton.edu/home/">Altorithms 4th ed</a> by Robert
@@ -66,8 +67,22 @@ public class StringST<Value> {
 
     }
 
-    public Iterable<String> keysWithPrefix(String s) {
+    public Iterable<String> keys() {
+        return keysWithPrefix("");
+    }
 
+    public Iterable<String> keysWithPrefix(String prefix) {
+        Queue<String> queue = new ArrayDeque<>();
+        collect(get(root, prefix, 0), prefix, queue);
+        return queue;
+    }
+
+    private void collect(Node x, String prefix, Queue<String> queue) {
+        if (x == null) return;
+        if (x.val != null) queue.add(prefix);
+        for (char c = 0; c < R; c++) {
+            collect(x, prefix + c, queue);
+        }
     }
 
     public Iterable<String> keysThatMatch(String s) {
@@ -75,9 +90,5 @@ public class StringST<Value> {
     }
 
     public int size() { return size; }
-
-    public Iterable<String> keys() {
-
-    }
 
 }
