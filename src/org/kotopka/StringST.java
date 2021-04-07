@@ -38,7 +38,7 @@ public class StringST<Value> {
 
         char c = key.charAt(d);
 
-        x.next[c] = put(x, key, val, d + 1);
+        x.next[c] = put(x.next[c], key, val, d + 1);
 
         return x;
     }
@@ -148,5 +148,20 @@ public class StringST<Value> {
     }
 
     public int size() { return size; }
+
+    public static void main(String[] args) {
+        StringST<Integer> st = new StringST<>();
+
+        st.put("she", 0);
+        st.put("sells", 1);
+        st.put("sea", 2);
+        st.put("shells", 3);
+        st.put("by", 4);
+        st.put("the", 5);
+        st.put("sea", 6);
+        st.put("shore", 7);
+
+        System.out.println(st.get("by"));
+    }
 
 }
