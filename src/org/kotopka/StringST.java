@@ -13,7 +13,7 @@ public class StringST<Value> {
 
     private static class Node {
         private Object val;
-        private Node[] next = new Node[R];
+        private final Node[] next = new Node[R];
     }
 
     private final static int R = 256;   // radix for extended ASCII
@@ -43,6 +43,7 @@ public class StringST<Value> {
         return x;
     }
 
+    @SuppressWarnings("unchecked")
     public Value get(String key) {
         Node x = get(root, key, 0);
 
@@ -182,6 +183,8 @@ public class StringST<Value> {
         for (String s : st.keysThatMatch(".he")) {
             System.out.println(s);
         }
+
+        System.out.println("\nst.longestPrefixOf(\"shell\") " + st.longestPrefixOf("shell"));
 
         System.out.println("\nst.contains(\"shells\") " + st.contains("shells"));
         System.out.println("\nst.contains(\"shell\") " + st.contains("shell"));
