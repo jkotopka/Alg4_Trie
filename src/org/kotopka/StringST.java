@@ -61,6 +61,7 @@ public class StringST<Value> {
     }
 
     public void delete(String key) {
+        if (get(key) != null) size--;
         root = delete(root, key, 0);
     }
 
@@ -152,6 +153,8 @@ public class StringST<Value> {
     public static void main(String[] args) {
         StringST<Integer> st = new StringST<>();
 
+        System.out.println("is empty? " + st.isEmpty());
+
         st.put("she", 0);
         st.put("sells", 1);
         st.put("sea", 2);
@@ -161,6 +164,8 @@ public class StringST<Value> {
         st.put("sea", 6);
         st.put("shore", 7);
 
+        System.out.println("is empty? " + st.isEmpty());
+        System.out.println("size: " + st.size());
         System.out.println(st.get("she"));
 
         System.out.println("\nst.keys()");
@@ -177,6 +182,13 @@ public class StringST<Value> {
         for (String s : st.keysThatMatch(".he")) {
             System.out.println(s);
         }
+
+        System.out.println("\nst.contains(\"shells\") " + st.contains("shells"));
+        System.out.println("\nst.contains(\"shell\") " + st.contains("shell"));
+
+        st.delete("shells");
+        System.out.println("\nst.contains(\"shells\") " + st.contains("shells"));
+        System.out.println("\nsize: " + st.size());
     }
 
 }
